@@ -1,4 +1,4 @@
-# CineControl - Sistema de Coleta de Dados
+# TakeFlow - Sistema de Gestão Audiovisual
 # Sistema desenvolvido para uma empresa fictícia do setor audiovisual
 
 print("=" * 50)
@@ -82,4 +82,4 @@ print(f"Faturamento total: R$ {faturamento_total:.2f}")
 media_valor = faturamento_total / len(projetos)
 print(f"Valor médio por projeto: R$ {media_valor:.2f}")
 
-print("\nCadastro encerrado. Obrigado por utilizar o CineControl!")
+print("\nCadastro encerrado. Obrigado por utilizar o TakeFlow!")

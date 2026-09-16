@@ -23,7 +23,7 @@ O sistema está sendo desenvolvido progressivamente em Python, começando por um
 
 - Python
 - Git
-- Github
+- GitHub
 
 ## Status
 
