@@ -2,11 +2,11 @@
 # Sistema desenvolvido para uma empresa fictícia do setor audiovisual
 
 print("=" * 50)
-print("              CINECONTROL")
+print("              TAKEFLOW")
 print("     Sistema de Gestão Audiovisual")
 print("=" * 50)
 
-print("\nBem-vindo ao CineControl!")
+print("\nBem-vindo ao TakeFlow!")
 print("Cadastre e acompanhe os projetos da produtora.")
 # Lista utilizada para armazenar os projetos cadastrados
 projetos = []
