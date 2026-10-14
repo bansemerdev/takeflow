@@ -1,6 +1,6 @@
 # TakeFlow - Sistema de Gestão Audiovisual
 # Sistema desenvolvido para uma empresa fictícia do setor audiovisual
-
+from metricas import classificar_projeto, calcular_faturamento, calcular_total_horas, calcular_valor_medio
 print("=" * 50)
 print("              TAKEFLOW")
 print("     Sistema de Gestão Audiovisual")
@@ -21,9 +21,24 @@ while continuar == "s":
     print("\n--- CADASTRO DE PROJETO ---")
 
     nome_projeto = input("Nome do projeto: ")
-    tipo_projeto = input(
-        "Tipo do projeto (curta, documentário, publicidade etc.): "
-    )
+    #Tipos de projetos válidos
+    tipos_validos = [
+        "curta",
+        "longa-metragem",
+        "documentário",
+        "videoclipe",
+        "série",
+        "outro"
+    
+    ]
+    while True:
+        tipo_projeto = input("Tipo do projeto (curta, longa-metragem, documentário, videoclipe, série, outro): ").strip().lower()
+
+        if tipo_projeto in tipos_validos:
+            break
+        else:
+            print("Tipo inválido. Por favor, escolha uma das opções válidas.")
+            print(", ".join(tipos_validos))
 
     # Validação das horas trabalhadas
     while True:
@@ -55,13 +70,8 @@ while continuar == "s":
         except ValueError:
             print("Entrada inválida. Digite um número válido.")
 
-    # Classificação do projeto de acordo com o valor recebido
-    if valor_projeto >= 1000:
-        classificacao = "Projeto de alto valor"
-    elif valor_projeto >= 500:
-        classificacao = "Projeto de médio valor"
-    else:
-        classificacao = "Projeto de baixo valor"
+    # Classificação utilizando a função criada
+    classificacao = classificar_projeto(valor_projeto)
 
     # Armazena os dados do projeto em uma lista
     projeto = [
@@ -78,3 +88,20 @@ while continuar == "s":
     print("\n--- RESUMO DO PROJETO ---")
     print(f"Projeto: {nome_projeto}")
     print(f"Tipo: {tipo_projeto}")
+    print(f"Horas trabalhadas: {horas_trabalhadas}")
+    print(f"Valor recebido: R$ {valor_projeto:.2f}")
+    print(f"Classificação: {classificacao}")
+
+    # Pergunta se o usuário deseja cadastrar outro projeto
+    continuar = input("\nDeseja cadastrar outro projeto? (s/n): ").lower()
+#Calcula o faturamento após finalizar os cadastros
+faturamento_total = calcular_faturamento(projetos)
+#Calcula as métricas após finalizar os cadastros
+faturamento_total = calcular_faturamento(projetos)
+valor_medio = calcular_valor_medio(projetos)
+total_horas = calcular_total_horas(projetos)
+
+print("\n--- RELATÓRIO DE MÉTRICAS ---")
+print(f"Faturamento total: R$ {faturamento_total:.2f}")
+print(f"Total de horas trabalhadas: {total_horas}")
+print(f"Valor médio por projeto: R$ {valor_medio:.2f}")
