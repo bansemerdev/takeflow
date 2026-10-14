@@ -20,7 +20,15 @@ while continuar == "s":
     # Coleta dos dados do projeto
     print("\n--- CADASTRO DE PROJETO ---")
 
-    nome_projeto = input("Nome do projeto: ")
+    # Validação do nome do projeto
+    while True:
+        nome_projeto = input("Nome do projeto: ").strip()
+
+        if nome_projeto:
+            break
+
+        print("O nome do projeto não pode ficar vazio.")
+
     #Tipos de projetos válidos
     tipos_validos = [
         "curta",
@@ -95,7 +103,8 @@ while continuar == "s":
     # Pergunta se o usuário deseja cadastrar outro projeto
     while True:
         continuar = input(
-        "\nDeseja cadastrar outro projeto? (s/n): ").strip().lower()
+    "\nDeseja cadastrar outro projeto? (s/n): "
+        ).strip().lower()
 
         if continuar in ["s", "n"]:
             break
