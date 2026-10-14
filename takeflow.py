@@ -93,9 +93,14 @@ while continuar == "s":
     print(f"Classificação: {classificacao}")
 
     # Pergunta se o usuário deseja cadastrar outro projeto
-    continuar = input("\nDeseja cadastrar outro projeto? (s/n): ").lower()
-#Calcula o faturamento após finalizar os cadastros
-faturamento_total = calcular_faturamento(projetos)
+    while True:
+        continuar = input(
+        "\nDeseja cadastrar outro projeto? (s/n): ").strip().lower()
+
+        if continuar in ["s", "n"]:
+            break
+        print("Opção inválida. Digite 's' para sim ou 'n' para não.")
+
 #Calcula as métricas após finalizar os cadastros
 faturamento_total = calcular_faturamento(projetos)
 valor_medio = calcular_valor_medio(projetos)
