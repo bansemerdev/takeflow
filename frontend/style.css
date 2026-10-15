@@ -1,0 +1,9 @@
+body {
+    background-color: #121212;
+    color: white;
+}
+.inicio {
+    background-color:rgb(180, 130, 226);
+    padding: 20px;
+    border-radius: 10px;
+}
