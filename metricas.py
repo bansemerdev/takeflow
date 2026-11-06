@@ -72,3 +72,40 @@ def calcular_valor_medio(projetos):
     faturamento_total = calcular_faturamento(projetos)
 
     return faturamento_total / len(projetos)
+
+def somar_horas_avulsas(*horas):
+    """
+    Soma qualquer quantidade de horas passadas como argumentos posicionais variáveis (*args).
+
+    Parâmetros:
+        *horas (float): Sequência de horas de projetos avulsos.
+
+    Retorno:
+        float: Soma total das horas passadas.
+    """
+    total = 0.0
+    for h in horas:
+        total += h
+    return total
+
+
+def gerar_painel_indicadores(faturamento, total_horas, valor_medio, **metadados):
+    """
+    Consolida os indicadores de desempenho e aceita metadados arbitrários (**kwargs).
+
+    Parâmetros:
+        faturamento (float): Faturamento total acumulado.
+        total_horas (float): Total de horas registradas.
+        valor_medio (float): Ticket médio por projeto.
+        **metadados: Dados opcionais contextuais (ex: produtora, ano, responsavel).
+
+    Retorno:
+        dict: Dicionário contendo os indicadores e os metadados informados.
+    """
+    painel = {
+        "faturamento_total": faturamento,
+        "total_horas": total_horas,
+        "valor_medio_projeto": valor_medio,
+        "metadados": metadados
+    }
+    return painel

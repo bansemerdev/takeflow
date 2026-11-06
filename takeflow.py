@@ -1,6 +1,13 @@
 # TakeFlow - Sistema de Gestão Audiovisual
 # Sistema desenvolvido para uma empresa fictícia do setor audiovisual
-from metricas import classificar_projeto, calcular_faturamento, calcular_total_horas, calcular_valor_medio
+from metricas import (
+    classificar_projeto,
+    calcular_faturamento,
+    calcular_total_horas,
+    calcular_valor_medio,
+    somar_horas_avulsas,
+    gerar_painel_indicadores
+)
 print("=" * 50)
 print("              TAKEFLOW")
 print("     Sistema de Gestão Audiovisual")
@@ -110,12 +117,44 @@ while continuar == "s":
             break
         print("Opção inválida. Digite 's' para sim ou 'n' para não.")
 
-#Calcula as métricas após finalizar os cadastros
+# Import atualizado no topo do arquivo:
+# from metricas import (
+#     classificar_projeto,
+#     calcular_faturamento,
+#     calcular_total_horas,
+#     calcular_valor_medio,
+#     somar_horas_avulsas,
+#     gerar_painel_indicadores
+# )
+
+# Calcula as métricas após finalizar os cadastros
 faturamento_total = calcular_faturamento(projetos)
 valor_medio = calcular_valor_medio(projetos)
 total_horas = calcular_total_horas(projetos)
 
-print("\n--- RELATÓRIO DE MÉTRICAS ---")
-print(f"Faturamento total: R$ {faturamento_total:.2f}")
-print(f"Total de horas trabalhadas: {total_horas}")
-print(f"Valor médio por projeto: R$ {valor_medio:.2f}")
+# Consolida os dados usando **kwargs para passar metadados arbitrários
+painel = gerar_painel_indicadores(
+    faturamento_total,
+    total_horas,
+    valor_medio,
+    produtora="TakeFlow Studios",
+    responsavel="Theo",
+    plataforma="Terminal CLI"
+)
+
+print("\n" + "=" * 50)
+print("             RELATÓRIO DE MÉTRICAS")
+print("=" * 50)
+print(f"Faturamento total: R$ {painel['faturamento_total']:.2f}")
+print(f"Total de horas trabalhadas: {painel['total_horas']}")
+print(f"Valor médio por projeto: R$ {painel['valor_medio_projeto']:.2f}")
+
+print("\n--- Metadados do Sistema (**kwargs) ---")
+for chave, valor in painel["metadados"].items():
+    print(f"{chave.capitalize()}: {valor}")
+
+# Exemplo prático de validação utilizando *args
+horas_lista = [p[2] for p in projetos]
+if horas_lista:
+    horas_conferidas = somar_horas_avulsas(*horas_lista)
+    print(f"\n[Validação *args] Horas conferidas via desempacotamento: {horas_conferidas}")
